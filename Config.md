@@ -15,7 +15,8 @@
 
 
 **Router 0(Left)**
-```enable
+```
+enable
 hostname Left
 configure terminal
 interface GigabitEthernet0/1
@@ -40,7 +41,8 @@ copy running-config startup-config
 
 
 **Router 1(Middle)** 
-```enable
+```
+enable
 hostname Middle
 configure terminal
 interface GigabitEthernet0/1
@@ -104,7 +106,8 @@ Minimum = 0ms, Maximum = 0ms, Average = 0ms
 ```
 
 **PC3** 
-```C:\>tracert 192.168.1.3
+```
+C:\>tracert 192.168.1.3
 
 Tracing route to 192.168.1.3 over a maximum of 30 hops: 
 
@@ -142,7 +145,8 @@ exit
 copy running-config startup-config
 ```
 **Router Middle**
-```enable
+```
+enable
 configure terminal
 int g0/2
 ip address 2.0.0.1 255.255.255.252
