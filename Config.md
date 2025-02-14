@@ -17,8 +17,8 @@
 **Router 0(Left)**
 ```
 enable
-hostname Left
 configure terminal
+hostname Left
 interface GigabitEthernet0/1
 ip address 192.168.1.1 255.255.255.0
 no shutdown
@@ -43,8 +43,8 @@ copy running-config startup-config
 **Router 1(Middle)** 
 ```
 enable
-hostname Middle
 configure terminal
+hostname Middle
 interface GigabitEthernet0/1
 ip address 192.168.2.1 255.255.255.0
 no shutdown
@@ -124,8 +124,8 @@ Trace complete.
 **Router Right**
 ```
 enable
-hostname Right
 configure terminal
+hostname Right
 interface GigabitEthernet0/2
 no shutdown
 ip address 2.0.0.2 255.255.255.252
