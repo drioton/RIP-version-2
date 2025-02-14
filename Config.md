@@ -56,8 +56,8 @@ passive-interface GigabitEthernet0/1
 exit
 ```
 
-```**PC0** 
-
+**PC0** 
+```
 C:\>ping 192.168.2.2
 
 Pinging 192.168.2.2 with 32 bytes of data:
@@ -70,6 +70,7 @@ Reply from 192.168.2.2: bytes=32 time<1ms TTL=126
 Ping statistics for 192.168.2.2:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
 Approximate round trip times in milli-seconds:
+Minimum = 0ms, Maximum = 0ms, Average = 0ms
 ```
 
 **PC3** 
@@ -84,6 +85,6 @@ Tracing route to 192.168.1.3 over a maximum of 30 hops:
 Trace complete.
 ```
 
-Adding Router 2(3)
-Adding PC4 and PC5
+**Adding Router 2(3)**
+**Adding PC4 and PC5**    
 
