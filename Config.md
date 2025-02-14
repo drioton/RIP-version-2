@@ -36,7 +36,7 @@ exit```
 
 
 **Router** 1
-enable
+```enable
 configure terminal
 interface GigabitEthernet0/1
 ip address 192.168.2.1 255.255.255.0
@@ -52,9 +52,9 @@ no auto-summary
 network 192.168.1.0
 network 1.0.0.0
 passive-interface GigabitEthernet0/1
-exit
+exit```
 
-**PC0** 
+```**PC0** 
 
 C:\>ping 192.168.2.2
 
@@ -67,10 +67,10 @@ Reply from 192.168.2.2: bytes=32 time<1ms TTL=126
 
 Ping statistics for 192.168.2.2:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
-Approximate round trip times in milli-seconds:
+Approximate round trip times in milli-seconds:```
 
 **PC3** 
-C:\>tracert 192.168.1.3
+```C:\>tracert 192.168.1.3
 
 Tracing route to 192.168.1.3 over a maximum of 30 hops: 
 
@@ -78,7 +78,7 @@ Tracing route to 192.168.1.3 over a maximum of 30 hops:
   2   0 ms      0 ms      0 ms      1.0.0.1
   3   *         0 ms      0 ms      192.168.1.3
 
-Trace complete.
+Trace complete.```
 
 Adding Router 2(3)
 Adding PC4 and PC5
