@@ -1,14 +1,14 @@
 
-PC0 192.168.1.2
-PC1 192.168.1.3
-PC2 192.168.2.2
-PC3 192.168.2.3
-PC4 192.168.3.2
-PC5 192.168.3.3
+**PC0** 192.168.1.2
+**PC1** 192.168.1.3
+**PC2** 192.168.2.2
+**PC3** 192.168.2.3
+**PC4** 192.168.3.2
+**PC5** 192.168.3.3
 
 
 
-Router 0
+**Router 0**
 enable
 configure terminal
 interface GigabitEthernet0/1
@@ -29,7 +29,7 @@ exit
 
 
 
-Router 1
+**Router** 1
 enable
 configure terminal
 interface GigabitEthernet0/1
@@ -48,7 +48,7 @@ network 1.0.0.0
 passive-interface GigabitEthernet0/1
 exit
 
-PC0 
+**PC0** 
 
 C:\>ping 192.168.2.2
 
@@ -63,7 +63,7 @@ Ping statistics for 192.168.2.2:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
 Approximate round trip times in milli-seconds:
 
-PC3 
+**PC3** 
 C:\>tracert 192.168.1.3
 
 Tracing route to 192.168.1.3 over a maximum of 30 hops: 
