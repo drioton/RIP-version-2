@@ -56,7 +56,7 @@ exit
 router rip
 version 2
 no auto-summary
-network 192.168.1.0
+network 192.168.2.0
 network 1.0.0.0
 passive-interface GigabitEthernet0/1
 exit
