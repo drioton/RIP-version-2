@@ -1,4 +1,4 @@
-# gitstatus
+
 
 **PC0** 192.168.1.2
 
@@ -15,11 +15,8 @@
 
 
 **Router 0**
-
-enable
-
+```enable
 configure terminal
-
 interface GigabitEthernet0/1
 ip address 192.168.1.1 255.255.255.0
 no shutdown
@@ -34,7 +31,7 @@ no auto-summary
 network 192.168.1.0
 network 1.0.0.0
 passive-interface GigabitEthernet0/1
-exit
+exit```
 
 
 
