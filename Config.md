@@ -33,6 +33,8 @@ network 192.168.1.0
 network 1.0.0.0
 passive-interface GigabitEthernet0/1
 exit
+exit
+copy running-config startup-config
 ```
 
 
@@ -76,7 +78,7 @@ exit
 192.168.2.1
 255.255.255.0
 ```
-**PC1**
+**PC4**
 ```
 192.168.2.3
 192.168.2.1
@@ -116,38 +118,19 @@ Trace complete.
 **Adding Router**
 **Adding PC4 and PC5**    
 
-**Router 1(Right)**
-```enable
-hostname Right
-configure terminal
-int g0/2
-ip address 2.0.0.1 255.255.255.252
-no shutdown
-exit
-```
-
-```
-router rip
-network 2.0.0.0
-exit
-```
-**Router 2**
+**Router Right**
 ```
 enable
+hostname Right
 configure terminal
 interface GigabitEthernet0/2
 no shutdown
 ip address 2.0.0.2 255.255.255.252
 exit
-```
-
-```
 interface GigabitEthernet0/1
 ip address 192.168.3.1 255.255.255.0
 no shutdown
 exit
-```
-```
 router rip
 version 2
 no auto-summary
@@ -155,8 +138,22 @@ network 2.0.0.0
 network 192.168.3.0
 passive-interface GigabitEthernet0/1
 exit
+exit
+copy running-config startup-config
 ```
-
+**Router Middle**
+```enable
+configure terminal
+int g0/2
+ip address 2.0.0.1 255.255.255.252
+no shutdown
+exit
+router rip
+network 2.0.0.0
+exit
+exit
+copy running-config startup-config
+```
 **PC4**
 ```
 192.168.3.2
@@ -211,3 +208,62 @@ Tracing route to 192.168.1.2 over a maximum of 30 hops:
 
 Trace complete.
 ```
+**Router Left**
+```
+show ip rip database 
+1.0.0.0/30    auto-summary
+1.0.0.0/30    directly connected, GigabitEthernet0/0
+2.0.0.0/30    auto-summary
+2.0.0.0/30
+    [1] via 1.0.0.2, 00:00:09, GigabitEthernet0/0
+192.168.1.0/24    auto-summary
+192.168.1.0/24    directly connected, GigabitEthernet0/1
+192.168.2.0/24    auto-summary
+192.168.2.0/24
+    [1] via 1.0.0.2, 00:00:09, GigabitEthernet0/0
+192.168.3.0/24    auto-summary
+192.168.3.0/24
+    [2] via 1.0.0.2, 00:00:09, GigabitEthernet0/0
+```
+**Router Right**
+```
+show ip protocols 
+Routing Protocol is "rip"
+Sending updates every 30 seconds, next due in 9 seconds
+Invalid after 180 seconds, hold down 180, flushed after 240
+Outgoing update filter list for all interfaces is not set
+Incoming update filter list for all interfaces is not set
+Redistributing: rip
+Default version control: send version 2, receive 2
+  Interface             Send  Recv  Triggered RIP  Key-chain
+  GigabitEthernet0/2    22
+Automatic network summarization is not in effect
+Maximum path: 4
+Routing for Networks:
+	2.0.0.0
+	192.168.3.0
+Passive Interface(s):
+	GigabitEthernet0/1
+Routing Information Sources:
+	Gateway         Distance      Last Update
+	2.0.0.1              120      00:00:04
+Distance: (default is 120)
+```
+
+**Router Middle**
+```
+show ip rip database 
+1.0.0.0/30    auto-summary
+1.0.0.0/30    directly connected, GigabitEthernet0/0
+2.0.0.0/30    auto-summary
+2.0.0.0/30    directly connected, GigabitEthernet0/2
+192.168.1.0/24    auto-summary
+192.168.1.0/24
+    [1] via 1.0.0.1, 00:00:26, GigabitEthernet0/0
+192.168.2.0/24    auto-summary
+192.168.2.0/24    directly connected, GigabitEthernet0/1
+192.168.3.0/24    auto-summary
+192.168.3.0/24
+    [1] via 2.0.0.2, 00:00:05, GigabitEthernet0/2
+```
+
