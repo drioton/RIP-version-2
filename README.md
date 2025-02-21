@@ -8,20 +8,24 @@ Example of how the RIP protocol works. After setting up a network with two route
 Ein Beispiel dafür, wie das RIP-Protokoll funktioniert. Nachdem wir ein Netzwerk mit zwei Routern und dem RIP-Protokoll eingerichtet hatten, fügten wir ein weiteres Netzwerk hinzu. Nach dem Hinzufügen haben wir das Netzwerk einfach in Router Middle eingetragen und Router Right durch das Hinzufügen der Netzwerke 2.0.0.0/30 und 192.168.3.0/24 konfiguriert. Alles andere übernahm RIP. Wir mussten die IP-Adressen nicht manuell eingeben.
 
 
-PC0 192.168.1.2
 
-PC1 192.168.1.3
 
-PC2 192.168.2.2
+**PC0** 192.168.1.2
 
-PC3 192.168.2.3
+**PC1** 192.168.1.3
 
-PC4 192.168.3.2
+**PC2** 192.168.2.2
 
-PC5 192.168.3.3
+**PC3** 192.168.2.3
 
-Router 0(Left)
+**PC4** 192.168.3.2
 
+**PC5** 192.168.3.3
+
+
+
+**Router 0(Left)**
+```
 enable
 configure terminal
 hostname Left
@@ -42,9 +46,12 @@ passive-interface GigabitEthernet0/1
 exit
 exit
 copy running-config startup-config
+```
 
-Router 1(Middle)
 
+
+**Router 1(Middle)** 
+```
 enable
 configure terminal
 hostname Middle
@@ -63,33 +70,36 @@ network 192.168.2.0
 network 1.0.0.0
 passive-interface GigabitEthernet0/1
 exit
+```
 
-PC0
-
+**PC0** 
+```
 192.168.1.2
 192.168.1.1
 255.255.255.0
-
-PC1
-
+```
+**PC1**
+```
 192.168.1.3
 192.168.1.1
 255.255.255.0
-
-PC3
-
+```
+**PC3** 
+```
 192.168.2.2
 192.168.2.1
 255.255.255.0
-
-PC4
-
+```
+**PC4**
+```
 192.168.2.3
 192.168.2.1
 255.255.255.0
+```
 
-PC0
 
+**PC0**
+```
 C:\>ping 192.168.2.2
 
 Pinging 192.168.2.2 with 32 bytes of data:
@@ -103,9 +113,10 @@ Ping statistics for 192.168.2.2:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
 Approximate round trip times in milli-seconds:
 Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
 
-PC3
-
+**PC3** 
+```
 C:\>tracert 192.168.1.3
 
 Tracing route to 192.168.1.3 over a maximum of 30 hops: 
@@ -115,11 +126,13 @@ Tracing route to 192.168.1.3 over a maximum of 30 hops:
   3   *         0 ms      0 ms      192.168.1.3
 
 Trace complete.
+```
 
-Adding Router Adding PC4 and PC5
+**Adding Router**
+**Adding PC4 and PC5**    
 
-Router Right
-
+**Router Right**
+```
 enable
 configure terminal
 hostname Right
@@ -140,9 +153,9 @@ passive-interface GigabitEthernet0/1
 exit
 exit
 copy running-config startup-config
-
-Router Middle
-
+```
+**Router Middle**
+```
 enable
 configure terminal
 int g0/2
@@ -154,21 +167,23 @@ network 2.0.0.0
 exit
 exit
 copy running-config startup-config
-
-PC4
-
+```
+**PC4**
+```
 192.168.3.2
 192.168.3.1
 255.255.255.0
+```
 
-PC5
-
+**PC5**
+```
 192.168.3.3
 192.168.3.1
 255.255.255.0
+```
 
-Test
-
+**Test**
+```
 C:\>ping 192.168.1.2
 
 Pinging 192.168.1.2 with 32 bytes of data:
@@ -182,9 +197,10 @@ Ping statistics for 192.168.1.2:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
 Approximate round trip times in milli-seconds:
     Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
 
-PC4
-
+**PC4**
+```
 C:\>tracert 192.168.2.3
 
 Tracing route to 192.168.2.3 over a maximum of 30 hops: 
@@ -205,9 +221,9 @@ Tracing route to 192.168.1.2 over a maximum of 30 hops:
   4   0 ms      0 ms      0 ms      192.168.1.2
 
 Trace complete.
-
-Router Left
-
+```
+**Router Left**
+```
 show ip rip database 
 1.0.0.0/30    auto-summary
 1.0.0.0/30    directly connected, GigabitEthernet0/0
@@ -222,9 +238,9 @@ show ip rip database
 192.168.3.0/24    auto-summary
 192.168.3.0/24
     [2] via 1.0.0.2, 00:00:09, GigabitEthernet0/0
-
-Router Right
-
+```
+**Router Right**
+```
 show ip protocols 
 Routing Protocol is "rip"
 Sending updates every 30 seconds, next due in 9 seconds
@@ -246,9 +262,10 @@ Routing Information Sources:
 	Gateway         Distance      Last Update
 	2.0.0.1              120      00:00:04
 Distance: (default is 120)
+```
 
-Router Middle
-
+**Router Middle**
+```
 show ip rip database 
 1.0.0.0/30    auto-summary
 1.0.0.0/30    directly connected, GigabitEthernet0/0
@@ -262,4 +279,6 @@ show ip rip database
 192.168.3.0/24    auto-summary
 192.168.3.0/24
     [1] via 2.0.0.2, 00:00:05, GigabitEthernet0/2
+```
+
 
